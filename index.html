@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#000000">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#000000"/>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="https://i.ibb.co/Yrp6czL/icono-app-la-buenota.png">
   <title>LA BUENOTA RADIO</title>
-  <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="icon-192.png">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background: url('LA-BUENOTA-APP-PWA.png') no-repeat center center fixed;
+      background: url('https://i.ibb.co/pr241NSX/LA-BUENOTA-APP-PWA.png') no-repeat center center fixed;
       background-size: cover;
-      font-family: sans-serif;
-      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
       height: 100vh;
-      overflow: hidden;
+      font-family: sans-serif;
     }
     .radio-player {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.6);
-      padding: 15px;
-      border-radius: 20px;
       display: flex;
       align-items: center;
       gap: 20px;
+      margin-bottom: 20px;
     }
     .play-btn {
       width: 60px;
@@ -96,31 +89,58 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
+    @media (max-width: 600px) {
+      .social-bubbles {
+        right: 10px;
+      }
+      .social-bubbles a {
+        width: 45px;
+        height: 45px;
+      }
+      .social-bubbles img {
+        width: 24px;
+        height: 24px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="social-bubbles">
-    <a href="https://wa.me/message/26OXOEPDCREJE1" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp" style="filter: invert(29%) sepia(91%) saturate(747%) hue-rotate(93deg) brightness(90%) contrast(89%);"></a>
-    <a href="https://www.facebook.com/donbeltranecua/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" style="filter: invert(29%) sepia(94%) saturate(549%) hue-rotate(187deg) brightness(91%) contrast(89%);"></a>
-    <a href="https://www.instagram.com/donbeltranecu/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="filter: invert(46%) sepia(58%) saturate(493%) hue-rotate(313deg) brightness(94%) contrast(90%);"></a>
-    <a href="https://www.tiktok.com/@donbeltranusa" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok" style="filter: invert(10%) sepia(89%) saturate(674%) hue-rotate(165deg) brightness(92%) contrast(96%);"></a>
-  </div>
+
   <div class="radio-player">
     <button class="play-btn" id="playPauseBtn">▶</button>
     <div class="spectrum" id="spectrum">
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
     </div>
   </div>
+
+  <div class="social-bubbles">
+    <a href="https://wa.me/message/26OXOEPDCREJE1" target="_blank" title="WhatsApp">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp"
+        style="filter: invert(29%) sepia(91%) saturate(747%) hue-rotate(93deg) brightness(90%) contrast(89%);">
+    </a>
+    <a href="https://www.facebook.com/donbeltranecua/" target="_blank" title="Facebook">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"
+        style="filter: invert(29%) sepia(94%) saturate(549%) hue-rotate(187deg) brightness(91%) contrast(89%);">
+    </a>
+    <a href="https://www.instagram.com/donbeltranecu/" target="_blank" title="Instagram">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"
+        style="filter: invert(46%) sepia(58%) saturate(493%) hue-rotate(313deg) brightness(94%) contrast(90%);">
+    </a>
+    <a href="https://www.tiktok.com/@donbeltranusa" target="_blank" title="TikTok">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok"
+        style="filter: invert(10%) sepia(89%) saturate(674%) hue-rotate(165deg) brightness(92%) contrast(96%);">
+    </a>
+  </div>
+
   <audio id="audio" crossorigin="anonymous" src="https://stream.zeno.fm/jpsr5zsxjlguv"></audio>
+
   <script>
     const audio = document.getElementById('audio');
     const playPauseBtn = document.getElementById('playPauseBtn');
     const bars = document.querySelectorAll('.bar');
     let context, analyser, source;
     let isPlaying = false;
+
     playPauseBtn.addEventListener('click', () => {
       if (!isPlaying) {
         audio.play();
@@ -133,6 +153,7 @@
         isPlaying = false;
       }
     });
+
     function initAudio() {
       context = new (window.AudioContext || window.webkitAudioContext)();
       source = context.createMediaElementSource(audio);
@@ -142,6 +163,7 @@
       analyser.fftSize = 64;
       const bufferLength = analyser.frequencyBinCount;
       const dataArray = new Uint8Array(bufferLength);
+
       function animate() {
         requestAnimationFrame(animate);
         analyser.getByteFrequencyData(dataArray);
@@ -151,6 +173,7 @@
           bar.style.height = height + '%';
         });
       }
+
       animate();
     }
   </script>
