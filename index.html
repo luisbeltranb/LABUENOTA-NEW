@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,31 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LA BUENOTA RADIO</title>
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#000000"/>
-  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <meta name="theme-color" content="#ff4081"/>
+  <link rel="apple-touch-icon" href="icons/icon.png">
   <style>
     body {
       margin: 0;
-      background: url('https://i.ibb.co/pr241NSX/LA-BUENOTA-APP-PWA.png') no-repeat center center fixed;
+      padding: 0;
+      background: url('assets/background.png') no-repeat center center fixed;
       background-size: cover;
       font-family: sans-serif;
-      height: 100vh;
-      overflow: hidden;
     }
-
     .radio-player {
       position: fixed;
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
+      background: rgba(0,0,0,0.6);
+      padding: 10px 20px;
+      border-radius: 20px;
       display: flex;
       align-items: center;
       gap: 20px;
-      background: rgba(0,0,0,0.6);
-      padding: 10px 20px;
-      border-radius: 30px;
+      z-index: 1000;
     }
-
     .play-btn {
       width: 60px;
       height: 60px;
@@ -43,22 +42,23 @@
       justify-content: center;
       align-items: center;
       box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      transition: background 0.3s;
     }
-
+    .play-btn:hover {
+      background: #333;
+    }
     .spectrum {
       display: flex;
       gap: 4px;
       height: 40px;
       align-items: end;
     }
-
     .bar {
       width: 6px;
       background: #4ade80;
       height: 10%;
-      transition: height 0.2s ease-out;
+      transition: height 0.1s ease-out;
     }
-
     .social-bubbles {
       position: fixed;
       top: 50%;
@@ -69,7 +69,6 @@
       gap: 15px;
       z-index: 999;
     }
-
     .social-bubbles a {
       display: flex;
       justify-content: center;
@@ -82,91 +81,103 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       animation: float 3s ease-in-out infinite;
     }
-
     .social-bubbles a:hover {
       transform: scale(1.15);
       box-shadow: 0 6px 16px rgba(0,0,0,0.3);
     }
-
     .social-bubbles img {
       width: 28px;
       height: 28px;
     }
-
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
+    @media (max-width: 600px) {
+      .social-bubbles {
+        right: 10px;
+      }
+      .social-bubbles a {
+        width: 45px;
+        height: 45px;
+      }
+      .social-bubbles img {
+        width: 24px;
+        height: 24px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="social-bubbles">
-    <a href="https://wa.me/message/26OXOEPDCREJE1" target="_blank" title="WhatsApp">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp"
-        style="filter: invert(29%) sepia(91%) saturate(747%) hue-rotate(93deg) brightness(90%) contrast(89%);">
-    </a>
-    <a href="https://www.facebook.com/donbeltranecua/" target="_blank" title="Facebook">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"
-        style="filter: invert(29%) sepia(94%) saturate(549%) hue-rotate(187deg) brightness(91%) contrast(89%);">
-    </a>
-    <a href="https://www.instagram.com/donbeltranecu/" target="_blank" title="Instagram">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"
-        style="filter: invert(46%) sepia(58%) saturate(493%) hue-rotate(313deg) brightness(94%) contrast(90%);">
-    </a>
-    <a href="https://www.tiktok.com/@donbeltranusa" target="_blank" title="TikTok">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok"
-        style="filter: invert(10%) sepia(89%) saturate(674%) hue-rotate(165deg) brightness(92%) contrast(96%);">
-    </a>
-  </div>
-
   <div class="radio-player">
     <button class="play-btn" id="playPauseBtn">▶</button>
-    <div class="spectrum" id="spectrum"></div>
+    <div class="spectrum" id="spectrum">
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+  </div>
+
+  <div class="social-bubbles">
+    <a href="https://wa.me/message/26OXOEPDCREJE1" target="_blank" title="WhatsApp">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp" style="filter: invert(29%) sepia(91%) saturate(747%) hue-rotate(93deg) brightness(90%) contrast(89%);">
+    </a>
+    <a href="https://www.facebook.com/donbeltranecua/" target="_blank" title="Facebook">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" style="filter: invert(29%) sepia(94%) saturate(549%) hue-rotate(187deg) brightness(91%) contrast(89%);">
+    </a>
+    <a href="https://www.instagram.com/donbeltranecu/" target="_blank" title="Instagram">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="filter: invert(46%) sepia(58%) saturate(493%) hue-rotate(313deg) brightness(94%) contrast(90%);">
+    </a>
+    <a href="https://www.tiktok.com/@donbeltranusa" target="_blank" title="TikTok">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok" style="filter: invert(10%) sepia(89%) saturate(674%) hue-rotate(165deg) brightness(92%) contrast(96%);">
+    </a>
   </div>
 
   <audio id="audio" crossorigin="anonymous" src="https://stream.zeno.fm/jpsr5zsxjlguv"></audio>
-
   <script>
     const audio = document.getElementById('audio');
     const playPauseBtn = document.getElementById('playPauseBtn');
-    const spectrum = document.getElementById('spectrum');
+    const bars = document.querySelectorAll('.bar');
+    let context, analyser, source;
     let isPlaying = false;
-
-    const bars = [];
-    for (let i = 0; i < 16; i++) {
-      const bar = document.createElement('div');
-      bar.className = 'bar';
-      spectrum.appendChild(bar);
-      bars.push(bar);
-    }
-
-    let animationId;
-
-    function animateFakeSpectrum() {
-      bars.forEach((bar) => {
-        const height = Math.random() * 100;
-        bar.style.height = height + '%';
-      });
-      animationId = requestAnimationFrame(animateFakeSpectrum);
-    }
 
     playPauseBtn.addEventListener('click', () => {
       if (!isPlaying) {
-        audio.play().then(() => {
-          playPauseBtn.textContent = '⏸';
-          animateFakeSpectrum();
-          isPlaying = true;
-        });
+        audio.play();
+        playPauseBtn.textContent = '⏸';
+        if (!context) initAudio();
+        isPlaying = true;
       } else {
         audio.pause();
         playPauseBtn.textContent = '▶';
-        cancelAnimationFrame(animationId);
         isPlaying = false;
       }
     });
 
+    function initAudio() {
+      context = new (window.AudioContext || window.webkitAudioContext)();
+      source = context.createMediaElementSource(audio);
+      analyser = context.createAnalyser();
+      source.connect(analyser);
+      analyser.connect(context.destination);
+      analyser.fftSize = 64;
+      const bufferLength = analyser.frequencyBinCount;
+      const dataArray = new Uint8Array(bufferLength);
+      function animate() {
+        requestAnimationFrame(animate);
+        analyser.getByteFrequencyData(dataArray);
+        bars.forEach((bar, i) => {
+          const value = dataArray[i];
+          const height = Math.max(4, (value / 255) * 100);
+          bar.style.height = height + '%';
+        });
+      }
+      animate();
+    }
+  </script>
+  <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js');
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('service-worker.js');
+      });
     }
   </script>
 </body>
