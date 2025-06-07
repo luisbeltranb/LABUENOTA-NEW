@@ -1,22 +1,20 @@
-
-self.addEventListener('install', function(e) {
-  e.waitUntil(
-    caches.open('buenota-radio-cache').then(function(cache) {
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open('la-buenota-cache').then(cache => {
       return cache.addAll([
-        '/',
-        '/index.html',
-        '/manifest.json',
-        '/service-worker.js',
-        '/assets/background.png',
-        '/icons/icon.png'
+        './',
+        './index.html',
+        './manifest.json',
+        './icon-192.png',
+        './icon-512.png'
       ]);
     })
   );
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request).then(function(response) {
+    caches.match(event.request).then(response => {
       return response || fetch(event.request);
     })
   );
